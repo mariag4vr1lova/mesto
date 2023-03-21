@@ -12,11 +12,11 @@
        </header>
        <main class="content">
         <section class="profile">
-            <img class="profile__avatar" src="images/image.jpg" alt="Жак-Ив">
+            <img class="profile__avatar" src="images/image.jpg" alt="Аватар пользователя">
             <div class="profile__info">
                 <div class="profile__container">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button hover-animation" type="button"></button>
+                    <button class="profile__edit-button hover-animation" type="button" aria-label="Редактировать"></button>
                 </div>
                 <p class="profile__subtitle">Исследователь океана</p>
             </div>
@@ -34,7 +34,7 @@
                 <img class="element__image" src="images/Paris.jpeg" alt="Париж">
                 <div class="element__block">
                     <h2 class="element__title">Париж</h2>
-                    <button class="element__like" aria-label="Лайк"></button>
+                    <button class="element__like" type="button" aria-label="Лайк"></button>
                 </div>
             </article>
             <article class="element">
@@ -45,7 +45,7 @@
                 </div>
             </article>
             <article class="element">
-                <img class="element__image" src="images/Río de janeiro.jpeg" alt="Рио-де-Жанейро">
+                <img class="element__image" src="images/Ríodejaneiro.jpeg" alt="Рио-де-Жанейро">
                 <div class="element__block">
                     <h2 class="element__title">Рио-де-Жанейро</h2>
                     <button class="element__like" aria-label="Лайк"></button>
@@ -66,17 +66,17 @@
                 </div>
             </article>
         </section>
-        <section class="popup">
+        <div class="popup">
             <div class="popup__container">
-              <button class="popup__button-close" type="submit"></button>
+              <button class="popup__button-close" type="button"></button>
               <h2 class="popup__title">Редактировать профиль</h2>
                <form class="popup__form" name="popup-form" novalidate>
-                <input type="text" class="popup__input popup__input_name" name="name" value="Жак-Ив Кусто" minlength="1" maxlength="30" required>
-                <input type="text" class="popup__input popup__input_text"  name="text" value="Исследователь океана" minlength="1" maxlength="100" required>
+                <input type="text" class="popup__input popup__input_username" name="name" value="Жак-Ив Кусто" minlength="1" maxlength="30" required>
+                <input type="text" class="popup__input popup__input_usertext"  name="text" value="Исследователь океана" minlength="1" maxlength="100" required>
                 <button type="submit" class="popup__button-save">Сохранить</button>
                </form>
             </div>
-        </section>
+        </div>
        </main>
        <footer class="footer">
         <p class="footer__description">© 2023 Mesto Russia</p>

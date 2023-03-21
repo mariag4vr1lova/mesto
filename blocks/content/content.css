@@ -1,7 +1,7 @@
 .content{
-max-width: 880px;
-background-color: black;
-margin: 0 auto;
+    max-width: 880px;
+    background-color: black;
+    margin: 0 auto;
 }
 @media screen and (max-width: 1020px){
     .content{
