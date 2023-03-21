@@ -1,0 +1,11 @@
+.element__like{
+   background-image: url(../../../images/Vector.png);
+   height: 19px;
+   width: 22px;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-color: #fff;
+   border-style: none;
+   background-size: contain;
+   flex-shrink: 0;
+}

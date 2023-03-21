@@ -1,0 +1,7 @@
+.hover-animation{
+    cursor: pointer;
+    transition: opasity 0.4s linear;
+}
+.hover-animation:hover{
+    opacity: 0.6;
+}
