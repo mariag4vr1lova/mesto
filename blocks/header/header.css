@@ -3,18 +3,23 @@
  margin: 0 auto;
  padding-top: 45px;
  padding-bottom: 41px;
- border: 1px solid rgba(84, 84, 84, 1)
+ border-bottom: 1px solid rgba(84, 84, 84, 1)
 }
-@media screen and (max-width: 1020px){
-    .header{
-        width: 100%;
+@media screen and (max-width: 960px) {
+    .header {
+      width: calc(100% - 76px);
     }
-    
-}
-@media screen and (max-width: 320px){
-    .header{
-        min-height: 84px;
-        padding-top: 0;
-        padding-bottom: 0;
+  }
+  
+  @media screen and (max-width: 540px) {
+    .header {
+      width: calc(100% - 54px);
+      margin-top: 28px;
     }
-}
+  }
+  
+  @media screen and (max-width: 360px) {
+    .header {
+      width: 100%;
+    }
+  } 

@@ -8,7 +8,7 @@
 @media screen and (max-width: 800px){
     .profile__avatar{
         display: flex;
-        align-items: center;
+        align-self: center;
         justify-content: center;
         margin-right: 0;
     }
