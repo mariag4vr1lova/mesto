@@ -4,10 +4,10 @@ const popupOpenButtonElement = document.querySelector('.profile__edit-button');
 const popupFormElement = document.querySelector('.popup__form');
 const nameElement = document.querySelector('.profile__title');
 const textElement = document.querySelector('.profile__subtitle');
-const popupInputNameElement = document.querySelector('.popup__input_username');
-const popupInputTextElement = document.querySelector('.popup__input_usertext');
+const popupInputNameElement = document.querySelector('.popup__input_user_name');
+const popupInputTextElement = document.querySelector('.popup__input_user_text');
 
-const openPopup = function () {
+const openPopup = function (popupFormElement) {
     popupElement.classList.add('popup_opened');
     
 }
