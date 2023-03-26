@@ -13,9 +13,8 @@ const closePopup = function () {
 }
 function openForm() {
     popup.classList.add('popup_opened');
-    popupFormElement.classList.add('popup_opened');
-    nameElement.textContent = popupInputNameElement.value; 
-    textElement.textContent = popupInputText.value; 
+    popupInputNameElement.value = nameElement.textContent; 
+    popupInputText.value = textElement.textContent; 
 }
 function formSubmitHandler (evt) { 
     evt.preventDefault(); 
