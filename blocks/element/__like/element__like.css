@@ -8,4 +8,9 @@
    border-style: none;
    background-size: contain;
    flex-shrink: 0;
+   transition: opacity 0.5s linear;
+   cursor: pointer;
 }
+.element__like:hover {
+   opacity: 0.5;
+ }

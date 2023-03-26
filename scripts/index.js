@@ -8,17 +8,14 @@ const popupInputNameElement = document.querySelector('.popup__input_user_name');
 const popupInputText = document.querySelector('.popup__input_user_text'); // ввод информации
 const SaveButtonElement = document.querySelector('.popup__button-save'); //кнопка сохранить
 
-const openPopup = function () {
-    popup.classList.add('popup_opened');
-    
-}
 const closePopup = function () {
     popup.classList.remove('popup_opened');
 }
 function openForm() {
+    popup.classList.add('popup_opened');
     popupFormElement.classList.add('popup_opened');
-    nameElement.value = popupInputNameElement.textContent;
-    textElement.value = popupInputText.textContent;
+    nameElement.textContent = popupInputNameElement.value; 
+    textElement.textContent = popupInputText.value; 
 }
 function formSubmitHandler (evt) { 
     evt.preventDefault(); 
@@ -27,6 +24,6 @@ function formSubmitHandler (evt) {
     closePopup(); 
 
 } 
-popupOpenButtonElement.addEventListener('click', openPopup);
+popupOpenButtonElement.addEventListener('click', openForm);
 popupCloseButtonElement.addEventListener('click', closePopup);
 popupFormElement.addEventListener('submit', formSubmitHandler);

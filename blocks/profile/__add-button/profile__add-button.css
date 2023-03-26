@@ -10,6 +10,7 @@
     align-self: center;
     width: 150px;
     height: 50px;
+    box-sizing: border-box;
 }
 
 
@@ -26,5 +27,6 @@
 @media screen and (max-width: 500px){
     .profile__add-button{
         width: 100%;
+        
     }
 }
