@@ -1,60 +1,57 @@
-const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup-profile') //редактировать профиль
-const popupCards = document.querySelector('.popup-cards') // карточки
-const popupCloseButtonElement = popup.querySelector('.popup__button-close'); //кнопка закрыть
-const popupOpenButtonElement = document.querySelector('.profile__edit-button'); //редактировать профиль
+const popupCard = document.querySelector('.popup-cards') // карточки
+const closeButtonProfile = document.querySelector('.popup__button-close'); //кнопка закрыть
+const openButtonProfile = document.querySelector('.profile__edit-button'); //редактировать профиль
 const formProfile = document.querySelector('.popup__form-profile'); //форма профиля
-const nameElement = document.querySelector('.profile__title'); //имя пользователя
-const textElement = document.querySelector('.profile__subtitle'); // информация
-const popupInputNameElement = document.querySelector('.popup__input_user_name'); //ввод имени
-const popupInputText = document.querySelector('.popup__input_user_text'); // ввод информации
-const SaveButtonElement = document.querySelector('.popup__button-save'); //кнопка сохранить
+const profileName = document.querySelector('.profile__title'); //имя пользователя
+const profileDescription = document.querySelector('.profile__subtitle'); // информация
+const popupInputNameUser = document.querySelector('.popup__input_user_name'); //ввод имени
+const popupInputUserDescription = document.querySelector('.popup__input_user_text'); // ввод информации
 const addButton = document.querySelector('.profile__add-button'); // кнопка добавить карточку
 const formCards = document.querySelector('.popup__form-cards'); //форма для карточки
 const imageName = document.querySelector('.popup__input_image_name'); //название картинки
 const imageLink = document.querySelector('.popup__input_link_image'); //ссылка на картинку
-
-const zoomCards = document.querySelector('.popup_zoom_cards');
+const popupZoomCards = document.querySelector('.popup_zoom_cards');
 const zoomImage = document.querySelector('.popup__zoom-image');
 const zoomTitle = document.querySelector('.popup__zoom-title');
 const elements = document.querySelector('.elements');
-const popupCloseCards = document.querySelector('.popup__button-close-cards'); //кнопка закрытия формы для добавления карточки
-const CreateButton = document.querySelector('.popup__button-create'); //кнопка создать
-const zoomCloseButton = document.querySelector('.popup__button-close-zoom'); //кнопка закрыть зум
+const popupCardCloseButton = document.querySelector('.popup__button-close-cards'); //кнопка закрытия формы для добавления карточки
+const popupZoomCloseButton = document.querySelector('.popup__button-close-zoom'); //кнопка закрыть зум
+//открытие попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 //закрывает попап
-const closePopup = function () {
+const closePopupProfile = function () {
     popupProfile.classList.remove('popup_opened');
 }
 //ОТКРЫВАЕТ ФОРМУ
-function openForm() {
-    popupProfile.classList.add('popup_opened');
-    popupInputNameElement.value = nameElement.textContent; 
-    popupInputText.value = textElement.textContent; 
+function openPopupProfile() {
+    openPopup(popupProfile);
+    popupInputNameUser.value = profileName.textContent; 
+    popupInputUserDescription.value = profileDescription.textContent; 
 }
-function formSubmitHandler (evt) { 
+function submitFormProfile (evt) { 
     evt.preventDefault(); 
-    nameElement.textContent = popupInputNameElement.value; 
-    textElement.textContent = popupInputText.value; 
-    closePopup(); 
+    profileName.textContent = popupInputNameUser.value; 
+    profileDescription.textContent = popupInputUserDescription.value; 
+    closePopupProfile(); 
 
 } 
-popupOpenButtonElement.addEventListener('click', openForm);
-popupCloseButtonElement.addEventListener('click', closePopup);
-formProfile.addEventListener('submit', formSubmitHandler);
+openButtonProfile.addEventListener('click', openPopupProfile)
+closeButtonProfile.addEventListener('click', closePopupProfile);
+formProfile.addEventListener('submit', submitFormProfile);
 
 //Добавление карточки
 addButton.addEventListener('click', function(){
-    popupCards.classList.add('popup_opened');
+    popupCard.classList.add('popup_opened');
     formCards.reset();
 })
 //Закрывает форму при нажатии на Х
-const closeCards = function() {
-  popupCards.classList.remove('popup_opened');
+const closePopupCard = function() {
+  popupCard.classList.remove('popup_opened');
 }
-popupCloseCards.addEventListener('click', closeCards);
+popupCardCloseButton.addEventListener('click', closePopupCard);
 
   //создание карточки
   function createCard(fotocard) {
@@ -74,12 +71,12 @@ popupCloseCards.addEventListener('click', closeCards);
       evt.target.classList.toggle('element__like_active');
     });
     image.addEventListener('click', function (evt) {
-      const cardTitle = evt.target.closest('.element').querySelector('.element__title').textContent;
+      const cardTitle = evt.target.getAttribute('alt');
       const cardAlt = evt.target.getAttribute('alt');
       zoomImage.setAttribute('src', evt.target.src);
       zoomImage.setAttribute('alt', cardAlt);
       zoomTitle.textContent = cardTitle;
-      openPopup(zoomCards)
+      openPopup(popupZoomCards)
      });
     return newImage;
   }
@@ -87,7 +84,7 @@ popupCloseCards.addEventListener('click', closeCards);
     const newImage = createCard(fotocard);
     elements.prepend(newImage);
   }
-  function handleFormCards (evt) {
+  function handleFormCardSubmit (evt) {
     evt.preventDefault();
     const title = imageName.value;
     const link = imageLink.value;
@@ -96,9 +93,9 @@ popupCloseCards.addEventListener('click', closeCards);
         link: link
     }
    renderCard(newCard, elements);
-   closeCards();
+   closeCard();
 }
-formCards.addEventListener('submit', handleFormCards);
+formCards.addEventListener('submit', handleFormCardSubmit);
 
 const initialCards = [
     {
@@ -126,12 +123,12 @@ const initialCards = [
       link: './images/Paris.jpeg'
     }
   ];
-    initialCards.forEach((fotocard) => {
-      const cardElement = createCard(fotocard);
-      elements.appendChild(cardElement);
-    });
+initialCards.forEach((fotocard) => {
+  const cardElement = createCard(fotocard);
+  elements.appendChild(cardElement);
+});
     //закрытие зума
-   zoomCloseButton.addEventListener('click', function () {
-    zoomCards.classList.remove('popup_opened');
-   })
+popupZoomCloseButton.addEventListener('click', function () {
+popupZoomCards.classList.remove('popup_opened');
+})
     
