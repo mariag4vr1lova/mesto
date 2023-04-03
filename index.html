@@ -22,59 +22,47 @@
             </div>
             <button class="profile__add-button hover-animation" type="button"></button>
         </section>
-        <section class="elements">
-            <article class="element">
-                <img class="element__image" src="images/Cape-Town.webp" alt="Кейптаун">
-                <div class="element__block">
-                    <h2 class="element__title">Кейптаун</h2>
-                    <button class="element__like" aria-label="Лайк" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/Paris.jpeg" alt="Париж">
-                <div class="element__block">
-                    <h2 class="element__title">Париж</h2>
-                    <button class="element__like" type="button" aria-label="Лайк"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/Park_Guel_v_Barselone_1.jpeg" alt="Парк Гуэль, Барселона">
-                <div class="element__block">
-                    <h2 class="element__title">Парк Гуэль, Барселона</h2>
-                    <button class="element__like" aria-label="Лайк" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/рио.jpeg" alt="Рио-де-Жанейро">
-                <div class="element__block">
-                    <h2 class="element__title">Рио-де-Жанейро</h2>
-                    <button class="element__like" aria-label="Лайк" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/NewOrlean.jpeg" alt="Новый Орлеан">
-                <div class="element__block">
-                    <h2 class="element__title">Новый Орлеан</h2>
-                    <button class="element__like" aria-label="Лайк" type="button"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/Roma.jpeg" alt="Рим">
-                <div class="element__block">
-                    <h2 class="element__title">Рим</h2>
-                    <button class="element__like" aria-label="Лайк" type="button"></button>
-                </div>
-            </article>
+        <section>
+            <ul class="elements">
+                <template id="imageTemplate">
+                    <li class="element">
+                        <img class="element__image" alt="Название" src="#">
+                        <div class="element__block">
+                            <h2 class="element__title">Название</h2>
+                            <button class="element__like element__like_active" aria-label="Лайк" type="button"></button>
+                        </div>
+                        <button class="element__delete-button" aria-label="Удалить" type="button"></button>
+                    </li>
+                </template>
+            </ul>
         </section>
-        <div class="popup">
+        <div class="popup popup-profile">
             <div class="popup__container">
               <button class="popup__button-close" type="button"></button>
               <h2 class="popup__title">Редактировать профиль</h2>
-               <form action="#" class="popup__form" name="popup-form" novalidate>
+               <form action="#" class="popup__form popup__form-profile" name="popup-form" novalidate>
                 <input id="username" type="text" class="popup__input popup__input_user_name" placeholder="Ваше имя" value="Жак-Ив Кусто" name="username" minlength="1" maxlength="30" required>
                 <input id="subtitle" type="text" class="popup__input popup__input_user_text"  placeholder="О себе" value="Исследователь океана" name="subtitle" minlength="1" maxlength="100" required>
                 <button type="submit" class="popup__button-save">Сохранить</button>
                </form>
+            </div>
+        </div>
+        <div class="popup popup-cards">
+            <div class="popup__container">
+              <button class="popup__button-close popup__button-close-cards" type="button"></button>
+              <h2 class="popup__title">Новое место</h2>
+               <form action="#" class="popup__form popup__form-cards" name="formcards" novalidate>
+                <input type="text" class="popup__input popup__input_image_name" placeholder="Название" name="imagename" value="" minlength="1" maxlength="30" required>
+                <input type="text" class="popup__input popup__input_link_image"  placeholder="Ссылка на картинку" value="" name="linkimage" required>
+                <button type="submit" class="popup__button-create">Создать</button>
+               </form>
+            </div>
+        </div>
+        <div class="popup popup_zoom_cards">
+            <div class="popup__zoom-container">
+                <img class="popup__zoom-image" src="#" alt="">
+                <p class="popup__zoom-title"></p>
+                <button type="button" class="popup__button-close popup__button-close-zoom"></button>
             </div>
         </div>
        </main>
