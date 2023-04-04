@@ -22,8 +22,8 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 //закрывает попап
-const closePopupProfile = function () {
-    popupProfile.classList.remove('popup_opened');
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
 //ОТКРЫВАЕТ ФОРМУ
 function openPopupProfile() {
@@ -35,23 +35,23 @@ function submitFormProfile (evt) {
     evt.preventDefault(); 
     profileName.textContent = popupInputNameUser.value; 
     profileDescription.textContent = popupInputUserDescription.value; 
-    closePopupProfile(); 
+    closePopup(popupProfile); 
 
 } 
 openButtonProfile.addEventListener('click', openPopupProfile)
-closeButtonProfile.addEventListener('click', closePopupProfile);
+closeButtonProfile.addEventListener('click', function () {
+  closePopup(popupProfile);});
 formProfile.addEventListener('submit', submitFormProfile);
 
 //Добавление карточки
 addButton.addEventListener('click', function(){
-    popupCard.classList.add('popup_opened');
+    openPopup(popupCard);
     formCards.reset();
 })
 //Закрывает форму при нажатии на Х
-const closePopupCard = function() {
-  popupCard.classList.remove('popup_opened');
-}
-popupCardCloseButton.addEventListener('click', closePopupCard);
+popupCardCloseButton.addEventListener('click', function(){
+  closePopup(popupCard);
+});
 
   //создание карточки
   function createCard(fotocard) {
@@ -93,7 +93,7 @@ popupCardCloseButton.addEventListener('click', closePopupCard);
         link: link
     }
    renderCard(newCard, elements);
-   closeCard();
+   closePopup(popupCard);
 }
 formCards.addEventListener('submit', handleFormCardSubmit);
 
@@ -129,6 +129,6 @@ initialCards.forEach((fotocard) => {
 });
     //закрытие зума
 popupZoomCloseButton.addEventListener('click', function () {
-popupZoomCards.classList.remove('popup_opened');
+  closePopup(popupZoomCards);
 })
     
