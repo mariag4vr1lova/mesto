@@ -41,9 +41,13 @@
               <button class="popup__button-close" type="button"></button>
               <h2 class="popup__title">Редактировать профиль</h2>
                <form action="#" class="popup__form popup__form-profile" name="popup-form" novalidate>
-                <input id="username" type="text" class="popup__input popup__input_user_name" placeholder="Ваше имя" value="Жак-Ив Кусто" name="username" minlength="1" maxlength="30" required>
-                <input id="subtitle" type="text" class="popup__input popup__input_user_text"  placeholder="О себе" value="Исследователь океана" name="subtitle" minlength="1" maxlength="100" required>
-                <button type="submit" class="popup__button-save">Сохранить</button>
+                <input id="input-username" type="text" class="popup__input popup__input_user_name" 
+                placeholder="Ваше имя" value="Жак-Ив Кусто" name="username" minlength="2" maxlength="40" required>
+                <span class="popup__error popup__error_visible input-username-error" ></span>
+                <input id="input-subtitle" type="text" class="popup__input popup__input_user_text"  placeholder="О себе"
+                value="Исследователь океана" name="subtitle" minlength="2" maxlength="200" required>
+                <span class="popup__error popup__error_visible input-subtitle-error" ></span>
+                <button type="submit" class="popup__button popup__button-save popup__button_disabled">Сохранить</button>
                </form>
             </div>
         </div>
@@ -52,9 +56,11 @@
               <button class="popup__button-close popup__button-close-cards" type="button"></button>
               <h2 class="popup__title">Новое место</h2>
                <form action="#" class="popup__form popup__form-cards" name="formcards" novalidate>
-                <input type="text" class="popup__input popup__input_image_name" placeholder="Название" name="imagename" value="" minlength="1" maxlength="30" required>
-                <input type="text" class="popup__input popup__input_link_image"  placeholder="Ссылка на картинку" value="" name="linkimage" required>
-                <button type="submit" class="popup__button-create">Создать</button>
+                <input type="text" class="popup__input popup__input_image_name" id="image-name" placeholder="Название" name="imagename" value="" minlength="1" maxlength="30" required>
+                <span class="popup__error popup__error_visible image-name-error" ></span>
+                <input type="url" class="popup__input popup__input_link_image"  id="link-image"placeholder="Ссылка на картинку" value="" name="linkimage" required>
+                <span class="popup__error popup__error_visible link-image-error" ></span>
+                <button type="submit" class="popup__button popup__button-create popup__button_disabled">Создать</button>
                </form>
             </div>
         </div>
@@ -70,5 +76,6 @@
         <p class="footer__description">© 2023 Mesto Russia</p>
        </footer>
        <script src="./scripts/index.js"></script>
+       <script src="./scripts/validate.js"></script>
     </body>
 </html>

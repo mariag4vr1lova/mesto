@@ -17,19 +17,43 @@ const zoomTitle = document.querySelector('.popup__zoom-title');
 const elements = document.querySelector('.elements');
 const popupCardCloseButton = document.querySelector('.popup__button-close-cards'); //кнопка закрытия формы для добавления карточки
 const popupZoomCloseButton = document.querySelector('.popup__button-close-zoom'); //кнопка закрыть зум
+const popups = document.querySelectorAll('.popup');
+const submitButtonClass = '.popup__button';
 //открытие попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', popupCloseByEsc);
 }
 //закрывает попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', popupCloseByEsc);
 }
+//Закрытие попапа кликом на оверлей
+popups.forEach((popup) => {
+  popup.addEventListener('click', (event) => {
+    if (event.target === popup) {
+      popup.classList.remove('popup_opened');
+    }
+  });
+});
+// Закрытие попапа нажатием на Esc
+function popupCloseByEsc(evt) {
+  if (evt.key === 'Escape'){
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  }
+}
+
 //ОТКРЫВАЕТ ФОРМУ
+
 function openPopupProfile() {
     openPopup(popupProfile);
     popupInputNameUser.value = profileName.textContent; 
-    popupInputUserDescription.value = profileDescription.textContent; 
+    popupInputUserDescription.value = profileDescription.textContent;
+    //resetInput(formProfile, config);
 }
 function submitFormProfile (evt) { 
     evt.preventDefault(); 
@@ -47,6 +71,7 @@ formProfile.addEventListener('submit', submitFormProfile);
 addButton.addEventListener('click', function(){
     openPopup(popupCard);
     formCards.reset();
+    //resetInput(formCards, config);
 })
 //Закрывает форму при нажатии на Х
 popupCardCloseButton.addEventListener('click', function(){
