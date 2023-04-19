@@ -22,12 +22,12 @@ const submitButtonClass = '.popup__button';
 //открытие попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', popupCloseByEsc);
+  document.addEventListener('keydown', closePopupByEsc);
 }
 //закрывает попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', popupCloseByEsc);
+  document.removeEventListener('keydown', closePopupByEsc);
 }
 //Закрытие попапа кликом на оверлей
 popups.forEach((popup) => {
@@ -38,13 +38,11 @@ popups.forEach((popup) => {
   });
 });
 // Закрытие попапа нажатием на Esc
-function popupCloseByEsc(evt) {
+function closePopupByEsc(evt) {
   if (evt.key === 'Escape'){
-    const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup) {
-      closePopup(openedPopup);
+    const openedPopup = document.querySelector('.popup_opened'); 
+    closePopup(openedPopup);
     }
-  }
 }
 
 //ОТКРЫВАЕТ ФОРМУ
