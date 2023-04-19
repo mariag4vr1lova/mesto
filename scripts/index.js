@@ -53,7 +53,6 @@ function openPopupProfile() {
     openPopup(popupProfile);
     popupInputNameUser.value = profileName.textContent; 
     popupInputUserDescription.value = profileDescription.textContent;
-    //resetInput(formProfile, config);
 }
 function submitFormProfile (evt) { 
     evt.preventDefault(); 
@@ -71,7 +70,6 @@ formProfile.addEventListener('submit', submitFormProfile);
 addButton.addEventListener('click', function(){
     openPopup(popupCard);
     formCards.reset();
-    //resetInput(formCards, config);
 })
 //Закрывает форму при нажатии на Х
 popupCardCloseButton.addEventListener('click', function(){
