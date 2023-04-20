@@ -25,18 +25,16 @@ const setEventListeners = (formElement, config) => {
   formElement.addEventListener("reset", () => {
     setTimeout(() => {
       toggleButtonStatus(inputList, buttonElement, config);
-          }, 0);
-        });
-    inputList.forEach((inputElement) => {
-      formElement.addEventListener("submit", (evt) => {
-        evt.preventDefault();
-      });
+    }, 0);
+  });
+  inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", function () {
         checkInputValidity (formElement, inputElement, config);
            toggleButtonStatus(inputList, buttonElement, config);
           });
-        });
-      };
+  });
+};
+  
       
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));

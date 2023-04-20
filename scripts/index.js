@@ -75,14 +75,14 @@ popupCardCloseButton.addEventListener('click', function(){
 });
 
   //создание карточки
-  function createCard(fotocard) {
+  function createCard(camelCase) {
     const newImage = document.querySelector('#imageTemplate').content.cloneNode(true);
     const cardTitle = newImage.querySelector('.element__title');
     const image = newImage.querySelector('.element__image');
     const deleteButton = newImage.querySelector('.element__delete-button');//мусорка
-    cardTitle.textContent = fotocard.title;
-    image.setAttribute('src', fotocard.link)
-    image.setAttribute('alt', fotocard.title)
+    cardTitle.textContent = camelCase.title;
+    image.setAttribute('src', camelCase.link)
+    image.setAttribute('alt', camelCase.title)
     //удаление
     deleteButton.addEventListener('click', function (evt) {
       evt.target.closest('.element').remove();
@@ -101,8 +101,8 @@ popupCardCloseButton.addEventListener('click', function(){
      });
     return newImage;
   }
-  function renderCard(fotocard, elements) {
-    const newImage = createCard(fotocard);
+  function renderCard(camelCase, elements) {
+    const newImage = createCard(camelCase);
     elements.prepend(newImage);
   }
   function handleFormCardSubmit (evt) {
@@ -144,8 +144,8 @@ const initialCards = [
       link: './images/Paris.jpeg'
     }
   ];
-initialCards.forEach((fotocard) => {
-  const cardElement = createCard(fotocard);
+initialCards.forEach((camelCase) => {
+  const cardElement = createCard(camelCase);
   elements.appendChild(cardElement);
 });
     //закрытие зума
