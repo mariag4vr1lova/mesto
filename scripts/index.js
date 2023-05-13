@@ -1,5 +1,9 @@
+import initialCards from './constants.js';
+import Card from './cards.js';
+import FormValidator from './FormValidator.js';
 const popupProfile = document.querySelector('.popup-profile') //редактировать профиль
 const popupCard = document.querySelector('.popup-cards') // карточки
+const formProfirelement = document.querySelector('.popup__form');
 const closeButtonProfile = document.querySelector('.popup__button-close'); //кнопка закрыть
 const openButtonProfile = document.querySelector('.profile__edit-button'); //редактировать профиль
 const formProfile = document.querySelector('.popup__form-profile'); //форма профиля
@@ -18,7 +22,15 @@ const elements = document.querySelector('.elements');
 const popupCardCloseButton = document.querySelector('.popup__button-close-cards'); //кнопка закрытия формы для добавления карточки
 const popupZoomCloseButton = document.querySelector('.popup__button-close-zoom'); //кнопка закрыть зум
 const popups = document.querySelectorAll('.popup');
-const submitButtonClass = '.popup__button';
+const imageTemplate = '#imageTemplate';
+const validationConfig = {
+  form: "popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button-save",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
 //открытие попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -44,11 +56,18 @@ function closePopupByEsc(evt) {
     closePopup(openedPopup);
     }
 }
+const formProfileValid = new FormValidator(validationConfig, formProfirelement);
+  console.log(formProfileValid);
+  formProfileValid.enableValidation();
 
+const formCardValid = new FormValidator(validationConfig, formCards);
+  console.log(formCardValid);
+  formCardValid.enableValidation();
 //ОТКРЫВАЕТ ФОРМУ
-
 function openPopupProfile() {
     openPopup(popupProfile);
+    formProfileValid.reset()
+    formProfileValid.resetValidation()
     popupInputNameUser.value = profileName.textContent; 
     popupInputUserDescription.value = profileDescription.textContent;
 }
@@ -57,7 +76,6 @@ function submitFormProfile (evt) {
     profileName.textContent = popupInputNameUser.value; 
     profileDescription.textContent = popupInputUserDescription.value; 
     closePopup(popupProfile); 
-
 } 
 openButtonProfile.addEventListener('click', openPopupProfile)
 closeButtonProfile.addEventListener('click', function () {
@@ -67,87 +85,38 @@ formProfile.addEventListener('submit', submitFormProfile);
 //Добавление карточки
 addButton.addEventListener('click', function(){
     openPopup(popupCard);
-    formCards.reset();
+    formCardValid.reset();
+    formCardValid.resetValidation();
 })
+function createNewCard (initialCards) {
+  const cardElement = new Card(initialCards, imageTemplate, openZoomPopup);
+  const card = cardElement.createCard();
+  return card;
+}
+function renderCard(elements, cardElement) {
+  elements.prepend(cardElement);
+}
+initialCards.forEach((initialCards) => {
+  renderCard(elements, createNewCard(initialCards))});
+
+
+function handleFormCardSubmit (evt) {
+  evt.preventDefault();
+  const cardLinkName = { title: imageName.value, link: imageLink.value};
+  renderCard(elements, createNewCard(cardLinkName));
+  closePopup(popupCard);
+}
+formCards.addEventListener('submit', handleFormCardSubmit);
 //Закрывает форму при нажатии на Х
 popupCardCloseButton.addEventListener('click', function(){
   closePopup(popupCard);
 });
-
-  //создание карточки
-  function createCard(camelCase) {
-    const newImage = document.querySelector('#imageTemplate').content.cloneNode(true);
-    const cardTitle = newImage.querySelector('.element__title');
-    const image = newImage.querySelector('.element__image');
-    const deleteButton = newImage.querySelector('.element__delete-button');//мусорка
-    cardTitle.textContent = camelCase.title;
-    image.setAttribute('src', camelCase.link)
-    image.setAttribute('alt', camelCase.title)
-    //удаление
-    deleteButton.addEventListener('click', function (evt) {
-      evt.target.closest('.element').remove();
-    });
-    //сердечко
-    newImage.querySelector('.element__like').addEventListener('click',  function (evt) { 
-      evt.target.classList.toggle('element__like_active');
-    });
-    image.addEventListener('click', function (evt) {
-      const cardTitle = evt.target.getAttribute('alt');
-      const cardAlt = evt.target.getAttribute('alt');
-      zoomImage.setAttribute('src', evt.target.src);
-      zoomImage.setAttribute('alt', cardAlt);
-      zoomTitle.textContent = cardTitle;
-      openPopup(popupZoomCards)
-     });
-    return newImage;
-  }
-  function renderCard(camelCase, elements) {
-    const newImage = createCard(camelCase);
-    elements.prepend(newImage);
-  }
-  function handleFormCardSubmit (evt) {
-    evt.preventDefault();
-    const title = imageName.value;
-    const link = imageLink.value;
-    const newCard = {
-        title: title,
-        link: link
-    }
-   renderCard(newCard, elements);
-   closePopup(popupCard);
+function openZoomPopup (camelCase) {
+  zoomImage.src = camelCase.link;
+  zoomImage.alt = camelCase.title;
+  zoomTitle.textContent = camelCase.title;
+  openPopup(popupZoomCards);
 }
-formCards.addEventListener('submit', handleFormCardSubmit);
-
-const initialCards = [
-    {
-      title: 'Рим',
-      link: './images/Roma.jpeg'
-    },
-    {
-      title: 'Парк Гуэль, Барселона',
-      link: './images/Park_Guel_v_Barselone_1.jpeg'
-    },
-    {
-      title: 'Рио-де-Жанейро',
-      link: './images/рио.jpeg'
-    },
-    {
-      title: 'Кейптаун',
-      link: './images/cape_town_south_africa.jpeg'
-    },
-    {
-      title: 'Новый Орлеан',
-      link: './images/NewOrlean.jpeg'
-    },
-    {
-      title: 'Париж',
-      link: './images/Paris.jpeg'
-    }
-  ];
-initialCards.forEach((camelCase) => {
-  const cardElement = createCard(camelCase);
-  elements.appendChild(cardElement);
-});
     //закрытие зума
 popupZoomCloseButton.addEventListener('click', function () {
   closePopup(popupZoomCards);
