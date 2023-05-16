@@ -1,8 +1,8 @@
 class Card {
-    constructor(camelCase, imageTemplate, openZoomPopup) {
-      this._camelCase = camelCase;
-      this._title = camelCase.title;
-      this._link = camelCase.link;
+    constructor(cardData, imageTemplate, openZoomPopup) {
+      this._cardData = cardData;
+      this._title = cardData.title;
+      this._link = cardData.link;
       this._imageTemplate = imageTemplate;
       this._openZoomPopup = openZoomPopup;
     }
@@ -20,9 +20,10 @@ class Card {
     }
     _hendleDeleteButtonElement = () => {
       this._cloneElement.remove();
+      this._cloneElement = null;
     }
     _hendelOpenImage = () => {
-      this._openZoomPopup(this._camelCase)
+      this._openZoomPopup(this._cardData)
     }
     _setEventListner(){
       this._likeElement.addEventListener('click', this._hendleLike);

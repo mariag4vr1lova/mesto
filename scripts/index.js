@@ -3,8 +3,8 @@ import Card from './cards.js';
 import FormValidator from './FormValidator.js';
 const popupProfile = document.querySelector('.popup-profile') //редактировать профиль
 const popupCard = document.querySelector('.popup-cards') // карточки
-const formProfirelement = document.querySelector('.popup__form');
-const closeButtonProfile = document.querySelector('.popup__button-close'); //кнопка закрыть
+const formProfilelement = document.querySelector('.popup__form');
+const popupCloseButton = document.querySelectorAll('.popup__button-close'); //кнопка закрыть
 const openButtonProfile = document.querySelector('.profile__edit-button'); //редактировать профиль
 const formProfile = document.querySelector('.popup__form-profile'); //форма профиля
 const profileName = document.querySelector('.profile__title'); //имя пользователя
@@ -19,8 +19,6 @@ const popupZoomCards = document.querySelector('.popup_zoom_cards');
 const zoomImage = document.querySelector('.popup__zoom-image');
 const zoomTitle = document.querySelector('.popup__zoom-title');
 const elements = document.querySelector('.elements');
-const popupCardCloseButton = document.querySelector('.popup__button-close-cards'); //кнопка закрытия формы для добавления карточки
-const popupZoomCloseButton = document.querySelector('.popup__button-close-zoom'); //кнопка закрыть зум
 const popups = document.querySelectorAll('.popup');
 const imageTemplate = '#imageTemplate';
 const validationConfig = {
@@ -56,7 +54,7 @@ function closePopupByEsc(evt) {
     closePopup(openedPopup);
     }
 }
-const formProfileValid = new FormValidator(validationConfig, formProfirelement);
+const formProfileValid = new FormValidator(validationConfig, formProfilelement);
   console.log(formProfileValid);
   formProfileValid.enableValidation();
 
@@ -65,11 +63,10 @@ const formCardValid = new FormValidator(validationConfig, formCards);
   formCardValid.enableValidation();
 //ОТКРЫВАЕТ ФОРМУ
 function openPopupProfile() {
-    openPopup(popupProfile);
-    formProfileValid.reset()
-    formProfileValid.resetValidation()
     popupInputNameUser.value = profileName.textContent; 
     popupInputUserDescription.value = profileDescription.textContent;
+    formProfileValid.resetValidation();
+    openPopup(popupProfile);
 }
 function submitFormProfile (evt) { 
     evt.preventDefault(); 
@@ -77,17 +74,22 @@ function submitFormProfile (evt) {
     profileDescription.textContent = popupInputUserDescription.value; 
     closePopup(popupProfile); 
 } 
+//Закрытие попапа на Х
+popupCloseButton.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
+
 openButtonProfile.addEventListener('click', openPopupProfile)
-closeButtonProfile.addEventListener('click', function () {
-  closePopup(popupProfile);});
 formProfile.addEventListener('submit', submitFormProfile);
 
 //Добавление карточки
 addButton.addEventListener('click', function(){
-    openPopup(popupCard);
-    formCardValid.reset();
-    formCardValid.resetValidation();
+  openPopup(popupCard);
+  formCards.reset();
+  formCardValid.resetValidation();
 })
+
 function createNewCard (initialCards) {
   const cardElement = new Card(initialCards, imageTemplate, openZoomPopup);
   const card = cardElement.createCard();
@@ -105,20 +107,16 @@ function handleFormCardSubmit (evt) {
   const cardLinkName = { title: imageName.value, link: imageLink.value};
   renderCard(elements, createNewCard(cardLinkName));
   closePopup(popupCard);
+  evt.target.reset();
 }
 formCards.addEventListener('submit', handleFormCardSubmit);
-//Закрывает форму при нажатии на Х
-popupCardCloseButton.addEventListener('click', function(){
-  closePopup(popupCard);
-});
-function openZoomPopup (camelCase) {
-  zoomImage.src = camelCase.link;
-  zoomImage.alt = camelCase.title;
-  zoomTitle.textContent = camelCase.title;
+
+
+function openZoomPopup (cardData) {
+  zoomImage.src = cardData.link;
+  zoomImage.alt = cardData.title;
+  zoomTitle.textContent = cardData.title;
   openPopup(popupZoomCards);
 }
-    //закрытие зума
-popupZoomCloseButton.addEventListener('click', function () {
-  closePopup(popupZoomCards);
-})
+
     
