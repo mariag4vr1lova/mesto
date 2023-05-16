@@ -1,5 +1,5 @@
 import initialCards from './constants.js';
-import Card from './cards.js';
+import Card from './Cards.js';
 import FormValidator from './FormValidator.js';
 const popupProfile = document.querySelector('.popup-profile') //редактировать профиль
 const popupCard = document.querySelector('.popup-cards') // карточки
