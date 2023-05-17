@@ -61,10 +61,10 @@ class FormValidator {
   resetValidation() {
     this._inputList.forEach(input => {
      const errorElement = this._form.querySelector(`.${input.id}-error`);
-     if (!input.validity.valid) {
+     //if (!input.validity.valid) {
        this._hideInputError(errorElement, input);
        console.log(1)
-     }
+     
     })
     this._disableButton()
   }
