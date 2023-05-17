@@ -18,7 +18,6 @@ class FormValidator {
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
     input.classList.remove(this._inputErrorClass);
-    console.log(2);
   }
   _enableButton () {
     this._button.classList.remove(this._inactiveButtonClass);
@@ -60,11 +59,8 @@ class FormValidator {
   
   resetValidation() {
     this._inputList.forEach(input => {
-     const errorElement = this._form.querySelector(`.${input.id}-error`);
-     //if (!input.validity.valid) {
-       this._hideInputError(errorElement, input);
-       console.log(1)
-     
+      const errorElement = this._form.querySelector(`.${input.id}-error`);
+      this._hideInputError(errorElement, input);
     })
     this._disableButton()
   }

@@ -55,11 +55,9 @@ function closePopupByEsc(evt) {
     }
 }
 const formProfileValid = new FormValidator(validationConfig, formProfilelement);
-  console.log(formProfileValid);
   formProfileValid.enableValidation();
 
 const formCardValid = new FormValidator(validationConfig, formCards);
-  console.log(formCardValid);
   formCardValid.enableValidation();
 //ОТКРЫВАЕТ ФОРМУ
 function openPopupProfile() {
