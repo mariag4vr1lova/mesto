@@ -26,7 +26,6 @@ const initialCards = [
       link: 'https://vsegda-pomnim.com/uploads/posts/2022-03/1648674879_78-vsegda-pomnim-com-p-reka-sena-v-parizhe-foto-92.jpg'
     }
   ];
-console.log(initialCards);
   const openButtonProfile = document.querySelector('.profile__edit-button');
   const addButton = document.querySelector('.profile__add-button');
   const imageTemplate = '#imageTemplate';
