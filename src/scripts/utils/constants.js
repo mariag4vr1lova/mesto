@@ -1,5 +1,3 @@
-
-//const roma = new URL ('../imges/Roma.jpeg', import.meta.url);
 const initialCards = [
     {
       title: 'Рим',
@@ -37,7 +35,6 @@ const initialCards = [
     inputErrorClass: "popup__input_type_error",
     errorClass: "popup__error_visible",
   };
-  const formAddCards = document.forms.formCards;
   const popupProfileSelector = '.popup-profile';
   const popupImageSelector = '.popup_zoom_cards';
   const elementsSelector = '.elements';
@@ -58,6 +55,5 @@ const initialCards = [
     elementsSelector,
     popupCardSelector,
     formValidator,
-    configInfo,
-    formAddCards
+    configInfo
   }
