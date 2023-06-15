@@ -76,10 +76,11 @@ const popupProfile = new PopupWithForm(popupProfileSelector, (data) => {
     .finally(() => popupProfile.setUpDefault())
   }); 
 const popupAddCard = new PopupWithForm(popupCardSelector, (data) => {
-  Promise.all([api.getInfo(), api.addCard(data)])
-  .then(([inputValues, data]) => {
-    data.myid = inputValues._id;
-    section.addItemPrepend(createNewCard(data))
+  api.addCard(data)
+  .then(dataCard => {
+    console.log(userInfo.getId())
+    dataCard.myid = userInfo.getId();
+    section.addItemPrepend(createNewCard(dataCard))
     popupAddCard.close()
   })
   .catch((error) => console.error(`Ошибка при создании новой карточки ${error}`))
@@ -130,6 +131,7 @@ Promise.all([api.getInfo(), api.getCards()])
   .then(([dataUser, dataCard]) => {
     dataCard.forEach(element => element.myid = dataUser._id);
     userInfo.setUserInfo({username: dataUser.name, subtitle: dataUser.about, avatar: dataUser.avatar});
+    userInfo.setId(dataUser._id);
     section.addCardFormArray(dataCard);
   })
 .catch((error) => console.error(`Ошибка при создании начальных данных страницы ${error}`))
