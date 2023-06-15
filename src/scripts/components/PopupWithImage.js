@@ -8,8 +8,8 @@ class PopupWithImage extends Popup {
     }
     open = (cardData) => {
         this._zoomImage.src = cardData.link;
-        this._zoomImage.alt = cardData.title;
-        this._zoomTitle.textContent = cardData.title;
+        this._zoomImage.alt = cardData.name;
+        this._zoomTitle.textContent = cardData.name;
         super.open()
     }
 }

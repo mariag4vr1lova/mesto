@@ -1,7 +1,12 @@
 .element{
- width: 282px;
- min-height: 361px;
- border-radius: 10px;
- background-color: #FFFFFF;
- position: relative;
+    background-color: #fff;
+    background-color: #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    max-width: 282px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
 }

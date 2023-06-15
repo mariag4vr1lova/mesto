@@ -1,6 +1,9 @@
 .element__block{
-  width: 246px;
-  margin: 20px auto 0;
+  align-items: center;
+  background-color: #fff;
   display: flex;
-  justify-content: space-between; 
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  padding: 25px 0 25px 21px;
 }

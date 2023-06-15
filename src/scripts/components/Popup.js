@@ -1,7 +1,7 @@
 class Popup {
     constructor (popupSelector) {
         this._popup = document.querySelector(popupSelector);
-        this._popupCloseButtons = this._popup.querySelector('.popup__button-close')
+        this._popupCloseButtons = this._popup.querySelector('.popup__button-close');
     }
     _handleEscClose = (evt) => {
         if (evt.key === 'Escape'){

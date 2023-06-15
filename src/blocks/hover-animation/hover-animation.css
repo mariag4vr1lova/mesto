@@ -1,6 +1,10 @@
 .hover-animation{
+    background-color: transparent;
+    background-position: 50%;
     cursor: pointer;
-    transition: opasity 0.4s linear;
+    margin: 0;
+    padding: 0;
+    transition: opacity .2s linear;
 }
 .hover-animation:hover{
     opacity: 0.6;
