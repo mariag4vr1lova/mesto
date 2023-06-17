@@ -1,7 +1,7 @@
 class Popup {
     constructor (popupSelector) {
         this._popup = document.querySelector(popupSelector);
-        this._popupCloseButtons = this._popup.querySelector('.popup__button-close');
+        this._popupCloseButton = this._popup.querySelector('.popup__button-close');
     }
     _handleEscClose = (evt) => {
         if (evt.key === 'Escape'){
@@ -17,7 +17,7 @@ class Popup {
           }
     }
     setEventListeners() {
-        this._popupCloseButtons.addEventListener('click', this._handleCloseButtons);
+        this._popupCloseButton.addEventListener('click', this._handleCloseButtons);
         this._popup.addEventListener('click', this._handleClickByOverlay)
     }
     open() {

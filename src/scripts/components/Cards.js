@@ -6,6 +6,7 @@ class Card {
       this._myid = cardData.myid;
       this._likes = cardData.likes;
       this._likeLength = cardData.likes.length;
+      this._isLiked = false;
       this._ownerId = cardData.owner._id;
       this._cardId = cardData._id;
       this._imageTemplate = imageTemplate;
@@ -23,8 +24,7 @@ class Card {
       return element;
     }
     _hendleLike = () => {
-      //this._likeElement.classList.toggle('element__like_active')
-      this._chageLike(this._likeElement, this._cardId)
+      this._chageLike(this._isLiked, this._cardId)
     }
     _handleDeleteButtonElement = () => {
       this._popupDeleteOpen({card: this, cardId: this._cardId});
@@ -48,6 +48,7 @@ class Card {
       this._likes.forEach(item => {
         if(item._id === this._myid){
           this._likeElement.classList.toggle('element__like_active')
+          this._isLiked = true
           return
         }
       })
@@ -57,6 +58,7 @@ class Card {
       this._likeElement.classList.toggle('element__like_active');
       this._counter.textContent = likes.length;
     }
+    
     createCard() {
       this._cloneElement = this._getTemplateClone();
       this._imageElement = this._cloneElement.querySelector('.element__image');
@@ -65,7 +67,7 @@ class Card {
       this._deleteButtonElement = this._cloneElement.querySelector('.element__delete-button');
       this._counter = this._cloneElement.querySelector('.element__counter');
       this._imageElement.src = this._link;
-      this._imageElement.alt = 'Изображение ${this._title}';
+      this._imageElement.alt = `Изображение ${this._title}`;
       this._titleElement.textContent = this._title;
       this._checkLikes();
       this._setEventListner();

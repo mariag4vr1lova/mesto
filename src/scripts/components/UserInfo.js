@@ -7,12 +7,10 @@ class UserInfo {
     getUserInfo() {
         return{username: this._profileName.textContent, subtitle: this._profileDescription.textContent}
     }
-    setUserInfo({username, subtitle, avatar}) {
+    setUserInfo({username, subtitle, avatar, id}) {
         this._profileAvatar.src = avatar;
         this._profileName.textContent = username;
         this._profileDescription.textContent = subtitle;
-    }
-    setId (id) {
         this._id = id;
     }
     getId () {

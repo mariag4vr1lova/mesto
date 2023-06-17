@@ -31,7 +31,6 @@ const api = new Api({
       'Content-Type': 'application/json'
     }
 })
-
 const userInfo = new UserInfo(configInfo);
 
 const popupDeleteCard = new PopupDeleteCard(popupDeleteSelector, ({card, cardId}) => {
@@ -45,8 +44,8 @@ const popupDeleteCard = new PopupDeleteCard(popupDeleteSelector, ({card, cardId}
 });
 
 function createNewCard (element) {
-  const cardElement = new Card(element, imageTemplate, popupImage.open, popupDeleteCard.open, (likeElement, cardId)=> {
-    if(likeElement.classList.contains('element__like_active')){
+  const cardElement = new Card(element, imageTemplate, popupImage.open, popupDeleteCard.open, (isLiked, cardId)=> {
+    if(isLiked){
       api.deleteLike(cardId)
       .then(res => {
         cardElement.toggleLike(res.likes);
@@ -78,7 +77,6 @@ const popupProfile = new PopupWithForm(popupProfileSelector, (data) => {
 const popupAddCard = new PopupWithForm(popupCardSelector, (data) => {
   api.addCard(data)
   .then(dataCard => {
-    console.log(userInfo.getId())
     dataCard.myid = userInfo.getId();
     section.addItemPrepend(createNewCard(dataCard))
     popupAddCard.close()
@@ -89,7 +87,6 @@ const popupAddCard = new PopupWithForm(popupCardSelector, (data) => {
 const popupEditAvatar = new PopupWithForm(popupAvatarSelector, (data) => {
   api.setNewAvatar(data)
     .then(res =>  {
-      console.log(res)
     userInfo.setUserInfo({username: res.name, subtitle: res.about, avatar: res.avatar})
     popupEditAvatar.close()
   })
@@ -130,8 +127,7 @@ avatarElement.addEventListener('click', () => {
 Promise.all([api.getInfo(), api.getCards()])
   .then(([dataUser, dataCard]) => {
     dataCard.forEach(element => element.myid = dataUser._id);
-    userInfo.setUserInfo({username: dataUser.name, subtitle: dataUser.about, avatar: dataUser.avatar});
-    userInfo.setId(dataUser._id);
+    userInfo.setUserInfo({username: dataUser.name, subtitle: dataUser.about, avatar: dataUser.avatar, id: dataUser._id});
     section.addCardFormArray(dataCard);
   })
 .catch((error) => console.error(`Ошибка при создании начальных данных страницы ${error}`))
