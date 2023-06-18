@@ -68,7 +68,7 @@ const popupImage = new PopupWithImage(popupImageSelector);
 const popupProfile = new PopupWithForm(popupProfileSelector, (data) => {
   api.setUserInfo(data)
     .then(res =>  {
-    userInfo.setUserInfo({username: res.name, subtitle: res.about, avatar: res.avatar})
+    userInfo.setUserInfo({username: res.name, subtitle: res.about, avatar: res.avatar, id: res._id})
     popupProfile.close()
     })
     .catch((error) => console.error(`Ошибка при редактировании профиля ${error}`))
@@ -87,7 +87,7 @@ const popupAddCard = new PopupWithForm(popupCardSelector, (data) => {
 const popupEditAvatar = new PopupWithForm(popupAvatarSelector, (data) => {
   api.setNewAvatar(data)
     .then(res =>  {
-    userInfo.setUserInfo({username: res.name, subtitle: res.about, avatar: res.avatar})
+    userInfo.setUserInfo({username: res.name, subtitle: res.about, avatar: res.avatar, id: res._id})
     popupEditAvatar.close()
   })
     .catch((error) => console.error(`Ошибка при обновлении аватара ${error}`))
